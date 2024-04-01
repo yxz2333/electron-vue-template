@@ -1,0 +1,12 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "description": "测试学习用electron",
+  "main": "index.js",
+  "repository": "",
+  "author": "yxz2333",
+  "license": "MIT",
+  "private": null,
+  "devDependencies": { "electron": "^28.2.9" },
+  "scripts": {"start": "electron ./index.js"}
+}
