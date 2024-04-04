@@ -1,12 +1,14 @@
-let electron = require('electron')
-let app = electron.app
-let BrowserWindow = electron.BrowserWindow
+const electron = require('electron')
+const app = electron.app
+const BrowserWindow = electron.BrowserWindow
+const ipcMain = electron.ipcMain
 let win = null
 app.on('ready', () => {
     win = new BrowserWindow({
         webPreferences:
         {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false
         }
     })
     win.loadFile('index.html')
@@ -14,6 +16,15 @@ app.on('ready', () => {
         win = null
     })
 })
+
+ipcMain.on('open-devtools', (event) => { // 绑定open-devtools事件
+    const focusedWindow = BrowserWindow.getFocusedWindow();
+    if (focusedWindow.webContents.isDevToolsOpened())
+        focusedWindow.webContents.closeDevTools();
+    else
+        focusedWindow.webContents.openDevTools();
+});
+
 app.on('window-all-closed', () => {
     app.quit()
 })

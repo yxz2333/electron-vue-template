@@ -6,6 +6,15 @@
 
 <body>
     <div>TEST!</div>
+    <button id="devtools">打开开发者工具</button>
+    <script>
+        const { ipcRenderer } = require('electron'); // 感觉像GDScript的信号
+
+        document.getElementById('devtools').addEventListener('click', () => { // 获取id，添加事件监听器
+            // 发送消息到主进程以打开/关闭开发者工具
+            ipcRenderer.send('open-devtools');
+        });
+    </script>
 </body>
 
 </html>
