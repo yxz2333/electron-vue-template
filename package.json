@@ -1,12 +1,32 @@
 {
-  "name": "test1",
+  "##": {
+    "electron:dev": "等待 8888 端口，启动 electron，配置 electron 的 Node 环境",
+    "electron:serve": "阻塞执行中的服务器运行，启动 vite 和 electron",
+    "electron:build": "build electron 应用，使用 electron-builder.json 配置"
+  },
+  "name": "web-ui-starter",
+  "private": true,
   "version": "1.0.0",
-  "description": "测试学习用electron",
-  "main": "index.js",
-  "repository": "",
-  "author": "yxz2333",
-  "license": "MIT",
-  "private": null,
-  "devDependencies": { "electron": "^28.2.9" },
-  "scripts": {"start": "electron ./index.js"}
+  "main": "electron/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron:dev": "cross-env NODE_ENV=development electron .",
+    "electron:serve": "concurrently -k \"yarn run dev\" \"yarn run electron:dev\"",
+    "electron:build": "vite build && electron-builder build --config electron-builder.json"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "vue": "^3.2.16"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "electron": "^31.2.0",
+    "electron-builder": "^24.13.3",
+    "electron-reload": "^2.0.0-alpha.1",
+    "vite": "^5.3.1"
+  }
 }

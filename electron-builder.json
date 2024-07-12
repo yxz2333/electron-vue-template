@@ -1,0 +1,17 @@
+{
+  "appId": "web-ui",
+  "productName": "web-ui",
+  "copyright": "Copyright © 2024 Lynia",
+  "mac": {
+    "category": "public.app-category.utilities"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true
+  },
+  "files": ["dist/**/*", "electron/**/*"],
+  "directories": {
+    "buildResources": "assets",
+    "output": "builder"
+  }
+}
